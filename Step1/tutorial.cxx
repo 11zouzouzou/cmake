@@ -2,7 +2,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
-#include <string>
+// #include <string>
 
 int main(int argc, char* argv[])
 {
@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
 
   // calculate square root
   const double outputValue = sqrt(inputValue);
-  std::cout << "The square root of " << inputValue << " is " << outputValue
+  std::cout << "now The square root of " << inputValue << " is " << outputValue
             << std::endl;
   return 0;
 }
