@@ -26,7 +26,7 @@ endif()
 add_executable(Tutorial tutorial.cxx)
 
 #主编译中 链接外部的库
-# 使用该变量EXTRA_LIBS来收集任何可选库，以便稍后链接到可执行文件中。该变量 EXTRA_INCLUDES类似地用于可选头文件。
+# 使用该变量EXTRA_LIBS来收集任何可选库，以便稍后链接到可执行文件中
 target_link_libraries(Tutorial PUBLIC ${EXTRA_LIBS})
 
 # 不再添加 ${EXTRA_INCLUDES} 在子包中已做usage reauirements

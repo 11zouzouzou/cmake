@@ -108,21 +108,40 @@ The square root of 16 is 4
 1. 测试
 
 > 执行后得到可执行文件 Tutorial 4. 测试，
+
 ### test
+
 > 此时会比 Step4 中的 cmake build 出的文件中会多出 CTestTestFfile.cmake,意味着可以执行在 cmakelists 中写的测试
+
 ```bash
 ctest
 ```
 
 > 结果
-build文件夹中出现Testing文件夹
-控制台输出对应结果
+> build 文件夹中出现 Testing 文件夹
+> 控制台输出对应结果
 
 ### install
-```
+
+````
 ```bash
 cmake --install . --prefix "install"
+````
+
+> 结果
+> 会在平级的 install 文件中出现需要安装的文件
+
+## Step6
+
+> 基于 Step5 增加 CheckSymbolExists， 检查当前系统是否支持的函数，并且在程序代码中使用宏判断，主要修改在 MathFunction 中
+
+1. 测试
+
+```bash
+./Tutorial 16
 ```
 
 > 结果
-会在平级的install文件中出现需要安装的文件
+> 不同平台可能有不同结果
+支持的`Computing sqrt of 16 to be 4 using log and exp The square root of 16 is 4`
+不支持的`Computing sqrt of 16 to be 4  The square root of 16 is 4`

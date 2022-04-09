@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include "MathFunctions.h"
 
 using namespace std;
@@ -8,6 +9,12 @@ double mysqrt(double x)
     {
         return 0;
     }
+    // if we have both log and exp then use them
+#if defined(HAVE_LOG) && defined(HAVE_EXP)
+    double result = exp(log(x) * 0.5); // need include cmath
+    std::cout << "Computing sqrt of " << x << " to be " << result
+              << " using log and exp" << std::endl;
+#else
 
     double result = x;
     for (int i = 0; i < 10; i++)
@@ -19,7 +26,8 @@ double mysqrt(double x)
         double delta = x - (result * result);
         result = result + 0.5 * delta / result;
 
-        std::cout << "computing sqrt og" << x << "to be" << result <<std::endl;
+        std::cout << "computing sqrt og" << x << "to be" << result << std::endl;
     }
+#endif
     return result;
 }
