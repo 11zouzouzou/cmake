@@ -100,3 +100,29 @@ The square root of 16 is 4
 
 1. 测试
    结果同 Step3
+
+## Step5
+
+> 基于 Step4 增加安装规则与测试
+
+1. 测试
+
+> 执行后得到可执行文件 Tutorial 4. 测试，
+### test
+> 此时会比 Step4 中的 cmake build 出的文件中会多出 CTestTestFfile.cmake,意味着可以执行在 cmakelists 中写的测试
+```bash
+ctest
+```
+
+> 结果
+build文件夹中出现Testing文件夹
+控制台输出对应结果
+
+### install
+```
+```bash
+cmake --install . --prefix "install"
+```
+
+> 结果
+会在平级的install文件中出现需要安装的文件
