@@ -1,0 +1,5 @@
+// 配置版本头文件 cmake中注入  @Tutorial_VERSION_MAJOR@和的值@Tutorial_VERSION_MINOR@将被替换。
+#define Tutorial_VERSION_MAJOR @Tutorial_VERSION_MAJOR@
+#define Tutorial_VERSION_MINOR @Tutorial_VERSION_MINOR@
+//与cmake中的option配合使用
+#cmakedefine USE_MYMATH
