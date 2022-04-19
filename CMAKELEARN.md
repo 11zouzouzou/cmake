@@ -145,3 +145,8 @@ cmake --install . --prefix "install"
 > 不同平台可能有不同结果
 支持的`Computing sqrt of 16 to be 4 using log and exp The square root of 16 is 4`
 不支持的`Computing sqrt of 16 to be 4  The square root of 16 is 4`
+
+## Step7
+
+> 基于Step6 ,添加自定义命令与生成文件
+
