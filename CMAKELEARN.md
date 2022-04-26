@@ -148,5 +148,28 @@ cmake --install . --prefix "install"
 
 ## Step7
 
-> 基于Step6 ,添加自定义命令与生成文件
+> 基于Step6 ,添加自定义命令,生成Table.h文件, mysqrt绑定Table.h,生成的最终Tutorial可在mysqrt中查询1~10的
+
+1. 测试
+
+```bash
+./Tutorial 3
+```
+
+> 结果
+
+```bash
+Use the table to help find an initial value 
+table value: 1.73205
+computing sqrt og3to be1.73205
+computing sqrt og3to be1.73205
+computing sqrt og3to be1.73205
+computing sqrt og3to be1.73205
+computing sqrt og3to be1.73205
+computing sqrt og3to be1.73205
+computing sqrt og3to be1.73205
+computing sqrt og3to be1.73205
+computing sqrt og3to be1.73205
+computing sqrt og3to be1.73205
+```
 
