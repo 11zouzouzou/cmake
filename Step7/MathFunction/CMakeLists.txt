@@ -1,33 +1,23 @@
+#添加MakeTable可执行文件。
+add_executable(MakeTable MakeTable.cxx)
+#自定义 命令
+# 生成Table.h 文件
+# 执行可执行文件 MakeTable 传入Table.h文件
+# 明确依赖MakeTable
+add_custom_command(
+  OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/Table.h
+  COMMAND MakeTable ${CMAKE_CURRENT_BINARY_DIR}/Table.h
+  DEPENDS MakeTable
+)
+
 # 添加包包名+文件
-add_library(MathFunctions mysqrt.cxx)
+# 让CMake知道mysqrt.cxx依赖于生成的文件Table.h。这是通过将生成的Table.h添加到库MathFunctions的源列表来实现的。
+add_library(MathFunctions mysqrt.cxx  ${CMAKE_CURRENT_BINARY_DIR}/Table.h)
 # 指定了使用要求后，我们可以安全地从顶层移除我们对变量的使用，
 #即可移除Step3中
 # list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/MathFunction") 
-target_include_directories(MathFunctions INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
-
-# 检查是否存在log and exp 并且赋予HAVE_LOG and HAVE_EXP 为缓存变量
-include(CheckSymbolExists)
-check_symbol_exists(log "math.h" HAVE_LOG)
-check_symbol_exists(exp "math.h" HAVE_EXP)
-if(NOT (HAVE_LOG AND HAVE_EXP))
- # 清空变量
-  unset(HAVE_LOG CACHE)
-  unset(HAVE_EXP CACHE)
-  # 设置CMAKE_REQUIRED_LIBRARIES 变量 vaule为 "m"
-  set(CMAKE_REQUIRED_LIBRARIES "m")
-  check_symbol_exists(log "math.h" HAVE_LOG)
-  check_symbol_exists(exp "math.h" HAVE_EXP)
-  if(HAVE_LOG AND HAVE_EXP)
-  # 再次请求时存在则链接 ，一般走不到
-    target_link_libraries(MathFunctions PRIVATE m)
-  endif()
-endif()
-
-# 往代码中注入宏
-if(HAVE_LOG AND HAVE_EXP)
-  target_compile_definitions(MathFunctions
-                             PRIVATE "HAVE_LOG" "HAVE_EXP")
-endif()
+# 我们还必须将当前二进制目录(${CMAKE_CURRENT_BINARY_DIR})添加到include目录列表中，以便mysqrt.cxx可以找到并包含Table.h。
+target_include_directories(MathFunctions INTERFACE ${CMAKE_CURRENT_SOURCE_DIR} PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 
 
 
