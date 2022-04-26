@@ -42,7 +42,9 @@ DESTINATION include
 )
 
 # 启用测试
-enable_testing()
+# enable_testing()
+# enable dashboard scripting
+include(CTest)
 # does the application run
 # 只是验证应用程序是否运行，没有段错误或以其他方式崩溃，并且返回值为零。
 add_test(NAME Runs COMMAND Tutorial 25)

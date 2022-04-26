@@ -186,5 +186,31 @@ computing sqrt og3to be1.73205
 
 ## Step9
 
-> 
+> 基于Step8,添加对测试仪表板的支持,增加CTestConfig.cmake
+
+1. 测试
+
+```bash
+ctest [-VV] -D Experimental 
+# 对于多配置生成器（例如 Visual Studio），必须指定配置类型
+or ctest [-VV] -C Debug -D Experimental 
+```
+
+> 结果
+
+```bash
+...
+100% tests passed, 0 tests failed out of 9
+
+Total Test time (real) =   0.14 sec
+Performing coverage
+ Cannot find any coverage files. Ignoring Coverage request.
+Submit files
+   SubmitURL: http://my.cdash.org/submit.php?project=CMakeTutorial
+   Uploaded: /Users/zou/Downloads/github/cmake/cmake/Step9/build/Testing/20220426-1244/Configure.xml
+   Uploaded: /Users/zou/Downloads/github/cmake/cmake/Step9/build/Testing/20220426-1244/Build.xml
+   Uploaded: /Users/zou/Downloads/github/cmake/cmake/Step9/build/Testing/20220426-1244/Test.xml
+   Uploaded: /Users/zou/Downloads/github/cmake/cmake/Step9/build/Testing/20220426-1244/Done.xml
+   Submission successful
+```
 
