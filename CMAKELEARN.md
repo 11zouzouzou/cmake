@@ -174,5 +174,17 @@ computing sqrt og3to be1.73205
 ```
 ## Step8
 
-> 打包安装程序
+> 基于Step7,打包安装程序
+
+1. 打包
+
+> 执行完build后，执行 cpack :打包安装程序or cpack --config CPackSourceConfig.cmake :打包源码 cpack -G ZIP:使用zip压缩
+
+2. 结果
+
+> 在build导出了压缩包，cmake多了cpack
+
+## Step9
+
+> 
 
