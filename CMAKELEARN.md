@@ -172,4 +172,7 @@ computing sqrt og3to be1.73205
 computing sqrt og3to be1.73205
 computing sqrt og3to be1.73205
 ```
+## Step8
+
+> 打包安装程序
 
