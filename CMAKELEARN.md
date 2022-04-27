@@ -215,5 +215,27 @@ Submit files
 ```
 
 ## step10
-> 选择静态或共享库 ,mac暂时跑不起来
+> 选择静态或共享库 
+即将use_math在mathFunction中实现与判断，也在mathFunction/cmakeList中做对应的编译共享包
+
+1. 测试
+```bash
+./Tutorial 3
+```
+
+> 结果
+```bash
+Use the table to help find an initial value 
+Computing sqrt of 3 to be 1.73205
+Computing sqrt of 3 to be 1.73205
+Computing sqrt of 3 to be 1.73205
+Computing sqrt of 3 to be 1.73205
+Computing sqrt of 3 to be 1.73205
+Computing sqrt of 3 to be 1.73205
+Computing sqrt of 3 to be 1.73205
+Computing sqrt of 3 to be 1.73205
+Computing sqrt of 3 to be 1.73205
+Computing sqrt of 3 to be 1.73205
+The square root of 3 is 1.73205
+```
 
