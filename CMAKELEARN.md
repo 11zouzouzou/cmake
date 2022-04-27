@@ -239,3 +239,14 @@ Computing sqrt of 3 to be 1.73205
 The square root of 3 is 1.73205
 ```
 
+## Step11
+> 添加生成器表达式
+
+>说明:可用于启用条件链接、编译时使用的条件定义、条件包含目录等。条件可以基于构建配置、目标属性、平台信息或任何其他可查询信息。
+有不同类型的 generator expressions包括逻辑、信息和输出表达式。
+逻辑表达式用于创建条件输出。基本表达式是0and1表达式。A$<0:...>产生空字符串，并<1:...>产生 的内容...。它们也可以嵌套。
+一个常见用法 generator expressions是有条件地添加编译器标志，例如语言级别或警告的标志。
+
+c++11编译:
+add_library(tutorial_compiler_flags INTERFACE)
+target_compile_features(tutorial_compiler_flags INTERFACE cxx_std_11)
