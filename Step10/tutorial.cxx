@@ -1,12 +1,11 @@
-#include <cmath>
+
+// A simple program that computes the square root of a number
 #include <iostream>
+#include <sstream>
+#include <string>
 
-#include "TutorialConfig.h"
-
-//宏判断
-#ifdef USE_MYMATH
 #include "MathFunctions.h"
-#endif
+#include "TutorialConfig.h"
 int main(int argc, char *argv[])
 {
     // argc 参数个数，argv 参数值
@@ -18,15 +17,9 @@ int main(int argc, char *argv[])
         return 1;
     }
     // convert input to double
-    //替换atof为 std::stodin为我们的项目添加一些 C++11 功能
     const double inputValue = std::stod(argv[1]);
-#ifdef USE_MYMATH
-    // calculate square root by my function
-    const double outputValue = mysqrt(inputValue);
-#else
-    // calculate square root
-    const double outputValue = sqrt(inputValue);
-#endif
+
+    const double outputValue = mathfunctions::sqrt(inputValue);
 
     std::cout << "The square root of " << inputValue << " is " << outputValue
               << std::endl;

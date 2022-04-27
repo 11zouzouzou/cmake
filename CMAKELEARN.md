@@ -214,3 +214,6 @@ Submit files
    Submission successful
 ```
 
+## step10
+> 选择静态或共享库 ,mac暂时跑不起来
+
