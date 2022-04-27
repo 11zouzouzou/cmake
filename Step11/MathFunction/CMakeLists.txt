@@ -54,7 +54,7 @@ target_link_libraries(MathFunctions PUBLIC tutorial_compiler_flags)
 target_compile_definitions(MathFunctions PRIVATE "EXPORTING_MYMATH")
 
 # install rules
-set(installable_libs MathFunctions)
+set(installable_libs MathFunctions tutorial_compiler_flags)
 if(TARGET SqrtLibrary)
   #附加包
   list(APPEND installable_libs SqrtLibrary)
