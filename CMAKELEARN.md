@@ -252,4 +252,8 @@ add_library(tutorial_compiler_flags INTERFACE)
 target_compile_features(tutorial_compiler_flags INTERFACE cxx_std_11)
 
 ## Step12
-> 
+> 添加导出配置
+
+> 通过这个导出调用，我们现在生成一个Targets.cmake，允许MathFunctionsConfig.cmake其他项目使用构建目录中的配置，而无需安装它
+
+1. TODO使用场景有待补充

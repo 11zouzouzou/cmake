@@ -27,6 +27,12 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
 
 option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
+# 兼容问题处理
+# if(APPLE)
+#   set(CMAKE_INSTALL_RPATH "@executable_path/../lib")
+# elseif(UNIX)
+#   set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib")
+# endif()
 
 # configure a header file to pass the version number only
 configure_file(TutorialConfig.h.in TutorialConfig.h)
@@ -93,3 +99,38 @@ set(CPACK_PACKAGE_VERSION_MAJOR "${Tutorial_VERSION_MAJOR}")
 set(CPACK_PACKAGE_VERSION_MINOR "${Tutorial_VERSION_MINOR}")
 set(CPACK_SOURCE_GENERATOR "TGZ")#选择源包的文件格式
 include(CPack)
+
+# install the configuration targets
+# 需要在MathFunction中设置 target_include_directories,不然会把本机路径也编入
+install(EXPORT MathFunctionsTargets
+  FILE MathFunctionsTargets.cmake
+  DESTINATION lib/cmake/MathFunction
+)
+
+include(CMakePackageConfigHelpers)# 使用CMakePackageConfigHelpers
+# generate the config file that is includes the exports 生成包含导出的配置文件
+configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
+  "${CMAKE_CURRENT_BINARY_DIR}/MathFunctionsConfig.cmake"
+  INSTALL_DESTINATION "lib/cmake/example"
+  NO_SET_AND_CHECK_MACRO
+  NO_CHECK_REQUIRED_COMPONENTS_MACRO
+  )
+# generate the version file for the config file
+write_basic_package_version_file(
+  "${CMAKE_CURRENT_BINARY_DIR}/MathFunctionsConfigVersion.cmake"
+  VERSION "${Tutorial_VERSION_MAJOR}.${Tutorial_VERSION_MINOR}"
+  COMPATIBILITY AnyNewerVersion
+)
+# install the generated configuration files
+install(FILES
+  ${CMAKE_CURRENT_BINARY_DIR}/MathFunctionsConfig.cmake
+  ${CMAKE_CURRENT_BINARY_DIR}/MathFunctionsConfigVersion.cmake
+  DESTINATION lib/cmake/MathFunctions
+  )
+
+# generate the export targets for the build tree
+# needs to be after the install(TARGETS ) command
+# 通过这个导出调用，我们现在生成一个Targets.cmake，允许MathFunctionsConfig.cmake其他项目使用构建目录中的配置，而无需安装它。
+export(EXPORT MathFunctionsTargets
+FILE "${CMAKE_CURRENT_BINARY_DIR}/MathFunctionsTargets.cmake"
+)

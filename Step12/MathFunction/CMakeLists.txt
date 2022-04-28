@@ -4,7 +4,10 @@ add_library(MathFunctions MathFunctions.cxx)
 # state that anybody linking to us needs to include the current source dir
 # to find MathFunctions.h, while we don't.
 target_include_directories(MathFunctions
-                           INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
+                           INTERFACE
+                           #在构建目录和安装/包中使用时需要不同的位置
+                           $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+                           $<INSTALL_INTERFACE:include>
                            )
 
 # should we use our own math functions
@@ -54,10 +57,12 @@ target_link_libraries(MathFunctions PUBLIC tutorial_compiler_flags)
 target_compile_definitions(MathFunctions PRIVATE "EXPORTING_MYMATH")
 
 # install rules
-set(installable_libs MathFunctions)
+set(installable_libs MathFunctions tutorial_compiler_flags)
 if(TARGET SqrtLibrary)
   #附加包
   list(APPEND installable_libs SqrtLibrary)
 endif()
-install(TARGETS ${installable_libs} DESTINATION lib)
+install(TARGETS ${installable_libs} 
+EXPORT MathFunctionsTargets #导出MathFunctionsTargets
+DESTINATION lib)
 install(FILES MathFunctions.h DESTINATION include)
