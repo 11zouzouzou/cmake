@@ -259,3 +259,30 @@ target_compile_features(tutorial_compiler_flags INTERFACE cxx_std_11)
 1. TODO使用场景有待补充
 
 ## 打包调试与发布
+
+1. 调试编译
+```bash
+cmake -DCMAKE_BUILD_TYPE=Debug ..
+cmake --build .
+```
+2. 调试测试
+```bash
+./Tutoriald 3
+```
+
+3. 发布编译
+```bash
+cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake --build .
+```
+
+4. 发布测试
+```bash
+./Tutorial 3
+```
+
+5. 使用自定义配置文件将两个版本打包到一个版本中
+```bash
+ cpack --config MultiCpackConfig.cmake
+```
+> 结果:输出为一个压缩包

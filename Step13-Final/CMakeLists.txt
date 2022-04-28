@@ -6,6 +6,7 @@ project(Tutorial VERSION 1.0)
 # specify the C++ standard
 # set(CMAKE_CXX_STANDARD 11)
 # set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_DEBUG_POSTFIX d) # debug build ,生成文件后面会有个d
 
 
 add_library(tutorial_compiler_flags INTERFACE)
@@ -40,8 +41,11 @@ configure_file(TutorialConfig.h.in TutorialConfig.h)
 # add the MathFunction dir
 add_subdirectory(MathFunction)
 
-# add the executable
+
+#add the executable
 add_executable(Tutorial tutorial.cxx)
+#add debug
+set_target_properties(Tutorial PROPERTIES DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})
 
 #主编译中 链接外部的库
 # 使用该变量EXTRA_LIBS来收集任何可选库，以便稍后链接到可执行文件中
